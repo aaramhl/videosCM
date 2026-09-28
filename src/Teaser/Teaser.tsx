@@ -1,12 +1,12 @@
-import "./fonts";
+import "../shared/fonts";
 import React from "react";
 import { AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame } from "remotion";
-import { Background } from "./Background";
+import { Background } from "../shared/Background";
 import { SceneIntro } from "./SceneIntro";
 import { SceneLens } from "./SceneLens";
 import { SceneOutro } from "./SceneOutro";
 import { ScenePath } from "./ScenePath";
-import { colors, DURATION } from "./theme";
+import { colors, DURATION } from "../shared/theme";
 
 // Scenes share one global timeline so hand-offs can overlap precisely.
 export const Teaser: React.FC = () => {

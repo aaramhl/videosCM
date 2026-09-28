@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, random, useCurrentFrame } from "remotion";
 import { LogoMark, Wordmark } from "./Logo";
-import { colors, easeIn, easeInOut, fonts, HEIGHT, tween, WIDTH } from "./theme";
+import { colors, easeIn, easeInOut, fonts, HEIGHT, tween, WIDTH } from "../shared/theme";
 
 const CX = WIDTH / 2;
 const CY = 800;

@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { LENS_ORIGIN } from "./ScenePath";
 import { TissueBack, TissueFloaters, TissueFront, TISSUE_EXTENT } from "./Tissue";
-import { colors, easeIn, easeInOut, easeOut, fonts, lerp, radius, tween, WIDTH } from "./theme";
+import { colors, easeIn, easeInOut, easeOut, fonts, lerp, radius, tween, WIDTH } from "../shared/theme";
 
 // Global frames. 0:08 → 0:12
 const T0 = 238;

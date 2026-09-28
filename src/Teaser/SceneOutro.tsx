@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { LogoMark, Wordmark } from "./Logo";
-import { colors, easeInOut, fonts, radius, tween, WIDTH } from "./theme";
+import { colors, easeInOut, fonts, radius, tween, WIDTH } from "../shared/theme";
 
 // Global frames. 0:12 → 0:15
 const T0 = 350;

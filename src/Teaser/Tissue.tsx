@@ -1,6 +1,6 @@
 import React from "react";
 import { random } from "remotion";
-import { colors, smoothClosedPath } from "./theme";
+import { colors, smoothClosedPath } from "../shared/theme";
 
 type Cell = { d: string; nx: number; ny: number; nrx: number; nry: number; nrot: number; dots: [number, number, number][] };
 

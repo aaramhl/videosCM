@@ -1,5 +1,5 @@
 import React from "react";
-import { colors, fonts } from "./theme";
+import { colors, fonts } from "../shared/theme";
 
 const dash = (p: number) => ({
   pathLength: 1,

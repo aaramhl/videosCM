@@ -29,7 +29,8 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "render": "remotion render CanonTeaser out/canonmedicinae-teaser.mp4",
-    "music": "python3 scripts/make_music.py public/music.wav",
+    "music": "python3 scripts/make_music.py public/music.wav && python3 scripts/make_music_microscope.py public/music-microscope.wav",
+    "render:microscope": "remotion render MicroscopeShowcase out/virtual-microscope-showcase.mp4",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc"
   },

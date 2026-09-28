@@ -12,7 +12,7 @@ import {
   radius,
   tween,
   WIDTH,
-} from "./theme";
+} from "../shared/theme";
 
 // All frame numbers in this file are global (scene starts at frame 0 of the video).
 const T_IN = 56; // icons appear
