@@ -1,54 +1,20 @@
-# Remotion video
+# CanonMedicinae — 15 s teaser
 
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.apng">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
+Vertical (1080×1920, 30 fps) 2D motion-graphics teaser built with [Remotion](https://www.remotion.dev).
 
-Welcome to your Remotion project!
+| Time | Scene | File |
+| --- | --- | --- |
+| 0:00–0:02 | Light lines converge into the logo + «المعرفة في مسارها.» | `src/Teaser/SceneIntro.tsx` |
+| 0:02–0:08 | Scattered icons → snap onto the path with three stops | `src/Teaser/ScenePath.tsx` |
+| 0:08–0:12 | Microscope-lens transition into H&E line-art tissue | `src/Teaser/SceneLens.tsx`, `Tissue.tsx` |
+| 0:12–0:15 | Logo, underline, tagline, URL, fade out | `src/Teaser/SceneOutro.tsx` |
 
-## Commands
-
-**Install Dependencies**
+Brand colours and fonts live in `src/Teaser/theme.ts`. Fonts (Cairo, Inter) come from `@fontsource-variable`.
+The music (`public/music.wav`) is synthesised procedurally by `scripts/make_music.py` (numpy + scipy).
 
 ```console
 npm i
+npm run dev      # preview in Remotion Studio
+npm run render   # → out/canonmedicinae-teaser.mp4
+npm run music    # regenerate the soundtrack
 ```
-
-**Start Preview**
-
-```console
-npm run dev
-```
-
-**Render video**
-
-```console
-npx remotion render
-```
-
-**Upgrade Remotion**
-
-```console
-npx remotion upgrade
-```
-
-## Docs
-
-Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
-
-## Help
-
-We provide help on our [Discord server](https://discord.gg/6VzzNDwUwV).
-
-## Issues
-
-Found an issue with Remotion? [File an issue here](https://github.com/remotion-dev/remotion/issues/new).
-
-## License
-
-Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
