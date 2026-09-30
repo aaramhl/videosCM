@@ -3,12 +3,22 @@ import { Composition } from "remotion";
 import { HelloWorld } from "./HelloWorld";
 import { Logo } from "./HelloWorld/Logo";
 import { ElafReel, FPS, REEL_DURATION } from "./ElafReel";
+import { ElafReel3D, REEL3D_DURATION } from "./ElafReel3D";
 
 // Each <Composition> is an entry in the sidebar!
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* 3D motion-graphic version, 15s including the logo outro — npm run render:elaf3d */}
+      <Composition
+        id="ElafReel3D"
+        component={ElafReel3D}
+        durationInFrames={REEL3D_DURATION}
+        fps={FPS}
+        width={1080}
+        height={1920}
+      />
       {/* Instagram Reel for baby Elaf's favors — npm run render:elaf */}
       <Composition
         id="ElafReel"

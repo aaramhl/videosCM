@@ -28,6 +28,7 @@
     "build": "remotion bundle",
     "render": "remotion render HelloWorld out/video.mp4",
     "render:elaf": "remotion render ElafReel out/elaf-reel.mp4 --crf=16",
+    "render:elaf3d": "remotion render ElafReel3D out/elaf-reel-3d.mp4 --crf=16",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc"
   },
