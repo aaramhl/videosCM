@@ -2,12 +2,22 @@ import "./index.css";
 import { Composition } from "remotion";
 import { HelloWorld } from "./HelloWorld";
 import { Logo } from "./HelloWorld/Logo";
+import { ElafReel, FPS, REEL_DURATION } from "./ElafReel";
 
 // Each <Composition> is an entry in the sidebar!
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* Instagram Reel for baby Elaf's favors — npm run render:elaf */}
+      <Composition
+        id="ElafReel"
+        component={ElafReel}
+        durationInFrames={REEL_DURATION}
+        fps={FPS}
+        width={1080}
+        height={1920}
+      />
       <Composition
         // You can take the "id" to render a video:
         // npx remotion render HelloWorld
