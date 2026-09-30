@@ -38,7 +38,11 @@ export function animate<T extends Record<string, number>>(
             frame,
             keys.map((k) => k.f),
             keys.map((k) => k[name]),
-            { easing: ease, extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+            {
+              easing: ease,
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+            },
           );
   }
   return out as T;
@@ -76,10 +80,10 @@ export type Piece = {
 // Soft window light from the upper left: shadows fall down and to the right.
 const LIGHT = { x: 0.55, y: 0.8 };
 
-const PieceLayer: React.FC<{ readonly piece: Piece; readonly grade: string }> = ({
-  piece,
-  grade,
-}) => {
+const PieceLayer: React.FC<{
+  readonly piece: Piece;
+  readonly grade: string;
+}> = ({ piece, grade }) => {
   const z = piece.z ?? 0;
   const base: React.CSSProperties = {
     position: "absolute",

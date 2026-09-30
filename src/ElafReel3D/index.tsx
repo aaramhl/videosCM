@@ -27,7 +27,9 @@ const SET: readonly Piece[] = [
 const SET_GRADE = "brightness(1.1) saturate(0.96)";
 
 // The adhkar card and main favor from the close-up photo.
-const HERO: readonly Piece[] = [{ src: "cutouts/hero.png", x: 6, y: 749, w: 1430, h: 1242 }];
+const HERO: readonly Piece[] = [
+  { src: "cutouts/hero.png", x: 6, y: 749, w: 1430, h: 1242 },
+];
 const HERO_GRADE = "brightness(1.06) saturate(0.96) sepia(0.04)";
 const BOW = { x: 1095, y: 1035 };
 const FAVOR = { x: 1090, y: 1330 };
@@ -70,7 +72,15 @@ const SCENES: readonly Scene[] = [
     pieces: () => HERO,
     grade: HERO_GRADE,
     camera: [
-      { f: 0, cx: BOW.x + 30, cy: BOW.y + 10, s: 1, dolly: 640, tilt: 42, yaw: -9 },
+      {
+        f: 0,
+        cx: BOW.x + 30,
+        cy: BOW.y + 10,
+        s: 1,
+        dolly: 640,
+        tilt: 42,
+        yaw: -9,
+      },
       { f: L, cx: BOW.x, cy: BOW.y + 90, s: 1, dolly: 760, tilt: 32, yaw: -4 },
     ],
     focus: [
@@ -95,7 +105,15 @@ const SCENES: readonly Scene[] = [
     grade: HERO_GRADE,
     camera: [
       { f: 0, cx: 1000, cy: 1340, s: 0.8, dolly: 150, tilt: 24, yaw: 4 },
-      { f: L, cx: FAVOR.x, cy: FAVOR.y - 40, s: 0.8, dolly: 720, tilt: 12, yaw: 0 },
+      {
+        f: L,
+        cx: FAVOR.x,
+        cy: FAVOR.y - 40,
+        s: 0.8,
+        dolly: 720,
+        tilt: 12,
+        yaw: 0,
+      },
     ],
     focus: [{ f: 0, ...FAVOR }],
     focusRadius: 0.75,
@@ -139,8 +157,14 @@ const SceneLayer: React.FC<{
   const cam = animate(frame, scene.camera);
   const pieces = scene.pieces(frame);
   const opacity = Math.min(
-    first ? 1 : interpolate(frame, [0, XFADE], [0, 1], { extrapolateRight: "clamp" }),
-    last ? 1 : interpolate(frame, [duration - XFADE, duration], [1, 0], { extrapolateLeft: "clamp" }),
+    first
+      ? 1
+      : interpolate(frame, [0, XFADE], [0, 1], { extrapolateRight: "clamp" }),
+    last
+      ? 1
+      : interpolate(frame, [duration - XFADE, duration], [1, 0], {
+          extrapolateLeft: "clamp",
+        }),
   );
 
   let blurred: React.ReactNode = null;
@@ -150,14 +174,22 @@ const SceneLayer: React.FC<{
     const r = W * (scene.focusRadius ?? 0.5);
     const mask = `radial-gradient(ellipse ${r}px ${r * 1.2}px at ${p.x}px ${p.y}px, transparent 0%, transparent 42%, rgba(0,0,0,0.75) 78%, black 100%)`;
     blurred = (
-      <AbsoluteFill style={{ WebkitMaskImage: mask, maskImage: mask, filter: `blur(${scene.blur ?? 8}px)` }}>
+      <AbsoluteFill
+        style={{
+          WebkitMaskImage: mask,
+          maskImage: mask,
+          filter: `blur(${scene.blur ?? 8}px)`,
+        }}
+      >
         <Stage cam={cam} pieces={pieces} grade={scene.grade} />
       </AbsoluteFill>
     );
   }
 
   const haze = scene.haze
-    ? interpolate(frame, [0, 40, L], [0, 0.55, 0.75], { extrapolateRight: "clamp" })
+    ? interpolate(frame, [0, 40, L], [0, 0.55, 0.75], {
+        extrapolateRight: "clamp",
+      })
     : 0;
 
   return (
@@ -211,13 +243,17 @@ const WindowLight: React.FC = () => {
 const Outro: React.FC = () => {
   const frame = useCurrentFrame();
   const length = REEL3D_DURATION - OUTRO_FROM + XFADE / 2;
-  const bg = interpolate(frame, [0, XFADE], [0, 1], { extrapolateRight: "clamp" });
+  const bg = interpolate(frame, [0, XFADE], [0, 1], {
+    extrapolateRight: "clamp",
+  });
   const t = interpolate(frame, [XFADE - 6, XFADE + 30], [0, 1], {
     easing: Easing.bezier(0.25, 0, 0.1, 1),
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const drift = interpolate(frame, [XFADE, length], [0, 1], { extrapolateLeft: "clamp" });
+  const drift = interpolate(frame, [XFADE, length], [0, 1], {
+    extrapolateLeft: "clamp",
+  });
   return (
     <AbsoluteFill style={{ opacity: bg }}>
       <AbsoluteFill
@@ -226,7 +262,13 @@ const Outro: React.FC = () => {
             "radial-gradient(ellipse 80% 60% at 50% 45%, #D6B0B1 0%, #C4969A 55%, #A87D82 100%)",
         }}
       />
-      <AbsoluteFill style={{ perspective: 1400, justifyContent: "center", alignItems: "center" }}>
+      <AbsoluteFill
+        style={{
+          perspective: 1400,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Img
           src={staticFile("logo.png")}
           style={{
@@ -250,7 +292,12 @@ export const ElafReel3D: React.FC = () => {
         const duration = i === 0 ? L - XFADE / 2 : last ? L + XFADE : L;
         return (
           <Sequence key={i} from={from} durationInFrames={duration}>
-            <SceneLayer scene={scene} duration={duration} first={i === 0} last={last} />
+            <SceneLayer
+              scene={scene}
+              duration={duration}
+              first={i === 0}
+              last={last}
+            />
           </Sequence>
         );
       })}

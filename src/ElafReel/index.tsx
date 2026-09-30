@@ -128,10 +128,16 @@ const SceneLayer: React.FC<{
   const fadeIn = first ? 12 : XFADE;
   const opacity = Math.min(
     interpolate(frame, [0, fadeIn], [0, 1], { extrapolateRight: "clamp" }),
-    last ? 1 : interpolate(frame, [duration - XFADE, duration], [1, 0], { extrapolateLeft: "clamp" }),
+    last
+      ? 1
+      : interpolate(frame, [duration - XFADE, duration], [1, 0], {
+          extrapolateLeft: "clamp",
+        }),
   );
   const bloom = scene.bloom
-    ? interpolate(frame, [0, 40, L], [0, 0.2, 0.28], { extrapolateRight: "clamp" })
+    ? interpolate(frame, [0, 40, L], [0, 0.2, 0.28], {
+        extrapolateRight: "clamp",
+      })
     : 0;
   return (
     <AbsoluteFill style={{ opacity }}>
@@ -150,7 +156,9 @@ const SceneLayer: React.FC<{
 const Outro: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const bg = interpolate(frame, [0, XFADE], [0, 1], { extrapolateRight: "clamp" });
+  const bg = interpolate(frame, [0, XFADE], [0, 1], {
+    extrapolateRight: "clamp",
+  });
   const logoIn = interpolate(frame, [XFADE - 4, XFADE + fps], [0, 1], {
     easing: Easing.bezier(0.33, 0, 0.2, 1),
     extrapolateLeft: "clamp",
@@ -194,7 +202,12 @@ export const ElafReel: React.FC = () => {
         const duration = i === 0 ? L - XFADE / 2 : last ? L + XFADE : L;
         return (
           <Sequence key={i} from={from} durationInFrames={duration}>
-            <SceneLayer scene={scene} duration={duration} first={i === 0} last={last} />
+            <SceneLayer
+              scene={scene}
+              duration={duration}
+              first={i === 0}
+              last={last}
+            />
           </Sequence>
         );
       })}

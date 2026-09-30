@@ -28,7 +28,11 @@ export type FocusKey = {
 
 const ease = Easing.bezier(0.45, 0, 0.55, 1);
 
-const track = (frame: number, keys: readonly { f: number }[], pick: (k: never) => number) => {
+const track = (
+  frame: number,
+  keys: readonly { f: number }[],
+  pick: (k: never) => number,
+) => {
   const frames = keys.map((k) => k.f);
   const values = keys.map((k) => pick(k as never));
   if (keys.length === 1) return values[0];
@@ -49,7 +53,16 @@ export const KenBurns: React.FC<{
   readonly focusRadius?: number;
   readonly blur?: number;
   readonly bloom?: number;
-}> = ({ src, imgW, imgH, camera, focus, focusRadius = 0.45, blur = 7, bloom = 0 }) => {
+}> = ({
+  src,
+  imgW,
+  imgH,
+  camera,
+  focus,
+  focusRadius = 0.45,
+  blur = 7,
+  bloom = 0,
+}) => {
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
 
@@ -59,8 +72,16 @@ export const KenBurns: React.FC<{
   // Keep the view inside the photo so no empty edges ever show.
   const clamp = (v: number, half: number, max: number) =>
     Math.min(Math.max(v, half), max - half);
-  const cx = clamp(track(frame, camera, (k: CameraKey) => k.cx), w / 2, imgW);
-  const cy = clamp(track(frame, camera, (k: CameraKey) => k.cy), viewH / 2, imgH);
+  const cx = clamp(
+    track(frame, camera, (k: CameraKey) => k.cx),
+    w / 2,
+    imgW,
+  );
+  const cy = clamp(
+    track(frame, camera, (k: CameraKey) => k.cy),
+    viewH / 2,
+    imgH,
+  );
 
   const left = width / 2 - cx * scale;
   const top = height / 2 - cy * scale;
@@ -90,12 +111,24 @@ export const KenBurns: React.FC<{
       <Img src={image} style={imgStyle} />
       {focus ? (
         <AbsoluteFill style={{ WebkitMaskImage: mask, maskImage: mask }}>
-          <Img src={image} style={{ ...imgStyle, filter: `${imgStyle.filter} blur(${blur}px)` }} />
+          <Img
+            src={image}
+            style={{
+              ...imgStyle,
+              filter: `${imgStyle.filter} blur(${blur}px)`,
+            }}
+          />
         </AbsoluteFill>
       ) : null}
       {bloom > 0 ? (
         <AbsoluteFill style={{ mixBlendMode: "screen", opacity: bloom }}>
-          <Img src={image} style={{ ...imgStyle, filter: `${imgStyle.filter} blur(22px) brightness(1.05)` }} />
+          <Img
+            src={image}
+            style={{
+              ...imgStyle,
+              filter: `${imgStyle.filter} blur(22px) brightness(1.05)`,
+            }}
+          />
         </AbsoluteFill>
       ) : null}
     </AbsoluteFill>
